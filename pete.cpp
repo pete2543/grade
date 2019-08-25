@@ -1,30 +1,39 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<time.h>
 using namespace std;
+void checknum(int);
 int main()
 {
+	cout << "###Welcome to guessing number game#### \n";
+	cout << "Secret the has deen chosen" << endl;
+	srand(time(NULL));
 	int n;
- 
-	cout << "Enter Number :";
-	cin >> n;
-	if ((n > 0)&& (n < 59))cout << "you got F";
-	else if (n > 60 && n < 69)
-	{
-		cout << "you got D" << endl;
-	}
-	else if (n > 70 && n < 79)
-	{
-		cout << "you got C" << endl;
-	}
-	else if (n > 80 && n < 89)
-	{
-		cout << "you got B" << endl;
-	}
-	else if (n > 90 && n < 100)
-	{
-		cout << "you got A" << endl;
-	}
-	  cout << "End" << endl;
-	
-	return (0);
+	n = rand() % 10 + 1;
+	checknum(n);
+	return(0);
+}
+void checknum(int Rand )
+{
+	int g;
+	int i = 0;
+	do {
+		cout << "Guess the number(1 to 10):";
+		cin >> g;
+		if (g < Rand) {
+			cout << "The secret number is higher" << endl;
+			i++;
+		}
+		else if (g == Rand) {
+			cout << "Congratulations!" << endl;
+			cout << "The secret number is " << Rand << endl;
+			i++;
+		}
+		else {
+			cout << "The secret number is lower" << endl;
+			i++;
+		}
+	} while (g != Rand);
+	cout << "You made " << i << "guesses" << endl;
+
 }
