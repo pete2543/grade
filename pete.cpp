@@ -1,40 +1,50 @@
-#include<iostream>
-#include<string>
-#include<time.h>
+#include <iostream>
+#include <string>
+
 using namespace std;
-void checknum(int,int);
+int update_balance(string, float, float &balance);
 int main()
 {
-	cout << "###Welcome to guessing number game#### \n";
-	cout << "Secret the has deen chosen" << endl;
-	srand(time(NULL));
-	int n,g;
-	int i = 0;
-	n = rand() % 10 + 1;
-	do {
-		cout << "Guess the number(1 to 10):";
-		cin >> g;
-		if (g > 10) { break; }
-		else if (g < 1) { break;}
-	
-		i++;
-		checknum(n,g);
-	} while (g != n);
-	cout << "You made " << i << " guesses" << endl;
-	cout << "The secret number is " << n << endl;
-	return(0);
-}
-void checknum(int Rand, int Input)
-{
-		if (Input > Rand) {
-			cout << "The secret number is higher" << endl;
-		}
-		else if (Input == Rand) {
-			cout << "Congratulations!" << endl;	
-			Rand == Input;
-		}
-		else if(Input < Rand) {
-		cout << "The secret number is lower" << endl;
-		}
+
+	float a, b, dollars, balance = 10000;
+	string c;
+	char command;
+	int q;
+
+	cout << "Exit with 0 \n";
+	cout << "Your balance = " << balance  << endl;
+
+	do{
 		
+		cout << "Input command (1 or withdraw, 2 deposit): ";
+		cin >> command;
+		if (command == '0')break;
+		cout << "Input amount : ";
+		cin >> dollars;
+		c = command;
+		b = dollars;
+
+		update_balance(c,b,a);
+		cout << "Your balance = " <<update_balance(c, b, balance);
+		cout  << endl;
+
+	} while (command != '0');
+	cout << "End\n";
+}
+int update_balance(string command, float dollars, float &balance)
+{
+
+
+	if (command == "1")
+	{
+		balance = balance - dollars;
+
+	}
+
+	if (command == "2")
+	{
+		balance = balance + dollars;
+	}
+
+	return(balance);
 }
